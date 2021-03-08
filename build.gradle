@@ -1,0 +1,23 @@
+plugins {
+	id 'java'
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation('org.junit.jupiter:junit-jupiter:5.6.0')
+}
+
+test {
+	useJUnitPlatform()
+	testLogging {
+		events "passed", "skipped", "failed"
+	}
+}
+compileJava {
+	options.compilerArgs << '-XDignore.symbol.file -Xlint:unchecked'
+	options.fork = true // may not needed on 1.8
+	options.forkOptions.executable = 'javac' // may not needed on 1.8
+}
